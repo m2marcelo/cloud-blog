@@ -1,10 +1,8 @@
-import { APIGatewayProxyHandler, APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
+import { APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
 import 'source-map-support'
 import { getAllPosts } from '../../businessLogic/posts'
 
- 
-
-export const handler:  APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise <APIGatewayProxyResult>  => {
+export const handler:  APIGatewayProxyHandler = async (): Promise <APIGatewayProxyResult>  => {
     const groups = await getAllPosts()
  
     return {
