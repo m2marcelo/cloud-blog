@@ -3,16 +3,16 @@
     "title": "group",
     "type": "object",
     "properties": {
-        "name": {
+        "title": {
             "type": "string"
         },
-        "description": {
+        "content": {
             "type":"string"
         }
     },
     "required":[
-        "name",
-        "description"
+        "title",
+        "content"
     ],
     "additionalProperties": false
 }
