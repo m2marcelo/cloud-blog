@@ -9,14 +9,14 @@ export class BlogAccess {
 
   constructor(
     private readonly docClient: DocumentClient = createDynamoDBClient(),
-    private readonly groupsTable = process.env.GROUPS_TABLE) {
+    private readonly blogPostsTable = process.env.POSTS_TABLE) {
   }
 
   async getAllPosts(): Promise<BlogPost[]> {
     console.log('Getting all posts')
 
     const result = await this.docClient.scan({
-      TableName: this.groupsTable
+      TableName: this.blogPostsTable
     }).promise()
 
     const items = result.Items
@@ -25,7 +25,7 @@ export class BlogAccess {
 
   async createPost(post: BlogPost): Promise<BlogPost> {
     await this.docClient.put({
-      TableName: this.groupsTable,
+      TableName: this.blogPostsTable,
       Item: post
     }).promise()
 
