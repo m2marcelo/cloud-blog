@@ -7,28 +7,28 @@ const XAWS = AWSXRay.captureAWS(AWS)
 
 const docClient = new XAWS.DynamoDB.DocumentClient()
 
-const groupsTable = process.env.GROUPS_TABLE
+const blogPostsTable = process.env.POSTS_TABLE
 const imagesTable = process.env.IMAGES_TABLE
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
 
   console.log('Caller event', event)
-  const groupId = event.pathParameters.groupId
-  const validGroupId = await groupExists(groupId)
+  const category = event.pathParameters.category
+  const validCategory = await categoryExists(category)
 
-  if (!validGroupId) {
+  if (!validCategory) {
     return {
       statusCode: 404,
       headers: {
         'Access-Control-Allow-Origin': '*'
       },
       body: JSON.stringify({
-        error: 'Group does not exist'
+        error: 'This category does not exists'
       })
     }
   }
 
-  const images = await getImagesPerGroup(groupId)
+  const images = await getImagesPerCategory(category)
 
   return {
     statusCode: 201,
@@ -41,26 +41,26 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   }
 }
 
-async function groupExists(groupId: string) {
+async function categoryExists(category: string) {
   const result = await docClient
     .get({
-      TableName: groupsTable,
+      TableName: blogPostsTable,
       Key: {
-        id: groupId
+        id: category
       }
     })
     .promise()
 
-  console.log('Get group: ', result)
+  console.log('categoryExists result = ', result)
   return !!result.Item
 }
 
-async function getImagesPerGroup(groupId: string) {
+async function getImagesPerCategory(category: string) {
   const result = await docClient.query({
     TableName: imagesTable,
-    KeyConditionExpression: 'groupId = :groupId',
+    KeyConditionExpression: 'category = :category',
     ExpressionAttributeValues: {
-      ':groupId': groupId
+      ':category': category
     },
     ScanIndexForward: false
   }).promise()
