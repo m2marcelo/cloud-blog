@@ -145,7 +145,7 @@ functions:
     events:
       - http:
           method: get
-          path: blogPosts/{categorie}/images
+          path: blogPosts/{category}/images
           cors: true
     iamRoleStatements:
       - Effect: Allow
@@ -171,7 +171,7 @@ functions:
     events:
       - http:
           method: post
-          path: blogPosts/{categorie}/images
+          path: blogPosts/{category}/images
           cors: true
           authorizer: Auth
           reqValidatorName: RequestBodyValidator
@@ -269,14 +269,14 @@ resources:
       Type: "AWS::DynamoDB::Table"
       Properties:
         AttributeDefinitions:
-          - AttributeName: categorie
+          - AttributeName: category
             AttributeType: S
           - AttributeName: timestamp
             AttributeType: S
           - AttributeName: imageId
             AttributeType: S
         KeySchema:
-          - AttributeName: categorie
+          - AttributeName: category
             KeyType: HASH
           - AttributeName: timestamp
             KeyType: RANGE
