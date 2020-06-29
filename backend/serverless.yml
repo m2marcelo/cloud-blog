@@ -82,8 +82,6 @@ provider:
         - '*'
     
 custom:
-  topicName: imagesTopic-${self:provider.stage}
-
   serverless-offline:
     port: 3003
 
@@ -217,13 +215,8 @@ resources:
 
     AttachmentsBucket:
       Type: AWS::S3::Bucket
-      DependsOn: SNSTopicPolicy
       Properties:
         BucketName: ${self:provider.environment.IMAGES_S3_BUCKET}
-        NotificationConfiguration:
-          TopicConfigurations:
-            - Event: s3:ObjectCreated:Put
-              Topic: !Ref ImagesTopic
         CorsConfiguration:
           CorsRules:
             -
