@@ -3,7 +3,7 @@ import 'source-map-support'
 import { getAllPosts } from '../../businessLogic/posts'
 
 export const handler:  APIGatewayProxyHandler = async (): Promise <APIGatewayProxyResult>  => {
-    const groups = await getAllPosts()
+    const blogPosts = await getAllPosts()
  
     return {
         statusCode: 200,
@@ -11,7 +11,7 @@ export const handler:  APIGatewayProxyHandler = async (): Promise <APIGatewayPro
             "Access-Control-Allow-Origin": '*'
         },
         body: JSON.stringify({ 
-            items: groups 
+            items: blogPosts 
         })
     };
 };
