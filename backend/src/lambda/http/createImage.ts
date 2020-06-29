@@ -14,27 +14,27 @@ const s3 = new XAWS.S3({
   signatureVersion: 'v4'
 })
 
-const groupsTable = process.env.GROUPS_TABLE
+const blogPostsTable = process.env.POSTS_TABLE
 const imagesTable = process.env.IMAGES_TABLE
 const bucketName = process.env.IMAGES_S3_BUCKET
 const urlExpiration = process.env.SIGNED_URL_EXPIRATION
 
 export const handler = middy(async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   console.log('Caller event', event)
-  const groupId = event.pathParameters.groupId
-  const validGroupId = await groupExists(groupId)
+  const category = event.pathParameters.category
+  const validcategory = await categoryExists(category)
 
-  if (!validGroupId) {
+  if (!validcategory) {
     return {
       statusCode: 404,
       body: JSON.stringify({
-        error: 'Group does not exist'
+        error: 'This blog category does not exists, please create it first.'
       })
     }
   }
 
   const imageId = uuid.v4()
-  const newItem = await createImage(groupId, imageId, event)
+  const newItem = await createImage(category, imageId, event)
 
   const url = getUploadUrl(imageId)
 
@@ -53,26 +53,26 @@ handler.use(
   })
 )
 
-async function groupExists(groupId: string) {
+async function categoryExists(category: string) {
   const result = await docClient
     .get({
-      TableName: groupsTable,
+      TableName: blogPostsTable,
       Key: {
-        id: groupId
+        id: category
       }
     })
     .promise()
 
-  console.log('Get group: ', result)
+  console.log('categoryExists results= ', result)
   return !!result.Item
 }
 
-async function createImage(groupId: string, imageId: string, event: any) {
+async function createImage(category: string, imageId: string, event: any) {
   const timestamp = new Date().toISOString()
   const newImage = JSON.parse(event.body)
 
   const newItem = {
-    groupId,
+    category,
     timestamp,
     imageId,
     ...newImage,
