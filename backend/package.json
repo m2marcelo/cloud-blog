@@ -9,6 +9,7 @@
   "dependencies": {
     "-": "0.0.1",
     "aws-xray-sdk": "^3.1.0",
+    "axios": "^0.19.2",
     "elasticsearch": "^16.7.1",
     "http-aws-es": "^6.0.0",
     "jimp": "^0.13.0",
