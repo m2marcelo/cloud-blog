@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "c3fd204b-4418-4aa7-9b8a-68130316f819",
+		"name": "Cloud Blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Blog Actions",
+			"item": [
+				{
+					"name": "Get all blog posts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{apiId}}.execute-api.{{regionId}}.amazonaws.com/dev/blogPosts",
+							"protocol": "https",
+							"host": [
+								"{{apiId}}",
+								"execute-api",
+								"{{regionId}}",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"blogPosts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create blog post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"New features\",\n\t\"content\": \"Amazon is releasing new features for cloud computing\"\n}"
+						},
+						"url": {
+							"raw": "https://{{apiId}}.execute-api.{{regionId}}.amazonaws.com/dev/blogPosts",
+							"protocol": "https",
+							"host": [
+								"{{apiId}}",
+								"execute-api",
+								"{{regionId}}",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"blogPosts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a image for a post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"New Image\"}"
+						},
+						"url": {
+							"raw": "https://{{apiId}}.execute-api.{{regionId}}.amazonaws.com/dev/{{category}}",
+							"protocol": "https",
+							"host": [
+								"{{apiId}}",
+								"execute-api",
+								"{{regionId}}",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"{{category}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Images for a category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/{{category}}/images",
+							"protocol": "https",
+							"host": [
+								"{{apiId}}",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"{{category}}",
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get image by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/{{category}}/images",
+							"protocol": "https",
+							"host": [
+								"{{apiId}}",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"{{category}}",
+								"images"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b9483be3-04da-4a3d-bc1a-fb7a35502530",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7a732221-c1d8-4a11-b8b8-1526d446e843",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d82cd2ac-2ed2-4999-81b9-4df767979485",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "98e2f0f8-1e4f-471d-9c5f-38def15e67a1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a62a4e73-0f19-44c2-9617-388d1f81e313",
+			"key": "apiId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "94b34a2f-3581-4fff-b30a-ad862e3a3bdd",
+			"key": "authToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "bb3cd434-9ffb-4103-a553-9960d3454ee7",
+			"key": "regionId",
+			"value": "us-west-2",
+			"type": "string"
+		},
+		{
+			"id": "853d33c8-d96e-4cdd-beea-b40fc1f8c510",
+			"key": "categoryId",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
