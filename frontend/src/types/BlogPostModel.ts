@@ -1,5 +1,7 @@
 export interface BlogPostModel {
-  id: string
+  groupId: string
+  timestamp: string
   title: string
-  content: string
+  imageId: string
+  imageUrl: string
 }
