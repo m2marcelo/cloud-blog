@@ -2,7 +2,7 @@ import * as uuid from 'uuid'
 
 import { Categories } from '../models/Categories'
 import { BlogAccess } from '../dataLayer/posts'
-import { CreateBlogPostRequest } from '../requests/CreateBlogCategoryRequest'
+import { CreateBlogCategoryRequest } from '../requests/CreateBlogCategoryRequest'
 import { getUserId } from '../auth/utils'
 
 const postsAccess = new BlogAccess()
@@ -12,7 +12,7 @@ export async function getAllPosts(): Promise<Categories[]> {
 }
 
 export async function createPost(
-  CreateBlogPostRequest: CreateBlogPostRequest,
+  CreateBlogCategoryRequest: CreateBlogCategoryRequest,
   jwtToken: string
 ): Promise<Categories> {
 
@@ -22,8 +22,8 @@ export async function createPost(
   return await postsAccess.createPost({
     id: itemId,
     userId: userId,
-    title: CreateBlogPostRequest.title,
-    content: CreateBlogPostRequest.content,
+    title: CreateBlogCategoryRequest.title,
+    content: CreateBlogCategoryRequest.content,
     timestamp: new Date().toISOString()
   })
 }
