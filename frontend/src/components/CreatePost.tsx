@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Form, Button } from 'semantic-ui-react'
-import { createImage, uploadFile } from '../api/images-api'
+import { createBlogPost, uploadFile } from '../api/blog-posts-api'
 import Auth from '../auth/Auth'
 
 enum UploadState {
@@ -9,26 +9,26 @@ enum UploadState {
   UploadingFile,
 }
 
-interface CreateImageProps {
+interface CreateBlogPostProps {
   match: {
     params: {
-      groupId: string
+      category: string
     }
   }
   auth: Auth
 }
 
-interface CreateImageState {
+interface CreateBlogPostState {
   title: string
   file: any
   uploadState: UploadState
 }
 
-export class CreateImage extends React.PureComponent<
-  CreateImageProps,
-  CreateImageState
+export class CreatePost extends React.PureComponent<
+  CreateBlogPostProps,
+  CreateBlogPostState
 > {
-  state: CreateImageState = {
+  state: CreateBlogPostState = {
     title: '',
     file: undefined,
     uploadState: UploadState.NoUpload
@@ -58,19 +58,19 @@ export class CreateImage extends React.PureComponent<
       }
 
       this.setUploadState(UploadState.UploadingData)
-      const uploadInfo = await createImage(this.props.auth.getIdToken(), {
-        groupId: this.props.match.params.groupId,
+      const uploadInfo = await createBlogPost(this.props.auth.getIdToken(), {
+        category: this.props.match.params.category,
         title: this.state.title
       })
 
-      console.log('Created image', uploadInfo)
+      console.log('Created post', uploadInfo)
 
       this.setUploadState(UploadState.UploadingFile)
       await uploadFile(uploadInfo.uploadUrl, this.state.file)
 
-      alert('Image was uploaded!')
+      alert('Post was uploaded!')
     } catch (e) {
-      alert('Could not upload an image: ' + e.message)
+      alert('Could not upload the post: ' + e.message)
     } finally {
       this.setUploadState(UploadState.NoUpload)
     }
