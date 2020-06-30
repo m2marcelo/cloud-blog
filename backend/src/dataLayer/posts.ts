@@ -1,7 +1,7 @@
 import * as AWS  from 'aws-sdk'
 import * as AWSXRay from 'aws-xray-sdk'
 import { DocumentClient } from 'aws-sdk/clients/dynamodb'
-import { BlogPost } from '../models/Posts'
+import { Categories } from '../models/Categories'
 
 const XAWS = AWSXRay.captureAWS(AWS)
 
@@ -12,7 +12,7 @@ export class BlogAccess {
     private readonly blogPostsTable = process.env.POSTS_TABLE) {
   }
 
-  async getAllPosts(): Promise<BlogPost[]> {
+  async getAllCategories(): Promise<Categories[]> {
     console.log('Getting all posts')
 
     const result = await this.docClient.scan({
@@ -20,10 +20,10 @@ export class BlogAccess {
     }).promise()
 
     const items = result.Items
-    return items as BlogPost[]
+    return items as Categories[]
   }
 
-  async createPost(post: BlogPost): Promise<BlogPost> {
+  async createCategory(post: Categories): Promise<Categories> {
     await this.docClient.put({
       TableName: this.blogPostsTable,
       Item: post

@@ -7,11 +7,11 @@ import { getUserId } from '../auth/utils'
 
 const postsAccess = new BlogAccess()
 
-export async function getAllPosts(): Promise<Categories[]> {
-  return postsAccess.getAllPosts()
+export async function getAllCategories(): Promise<Categories[]> {
+  return postsAccess.getAllCategories()
 }
 
-export async function createPost(
+export async function createCategory(
   CreateBlogCategoryRequest: CreateBlogCategoryRequest,
   jwtToken: string
 ): Promise<Categories> {
@@ -19,7 +19,7 @@ export async function createPost(
   const itemId = uuid.v4()
   const userId = getUserId(jwtToken)
 
-  return await postsAccess.createPost({
+  return await postsAccess.createCategory({
     id: itemId,
     userId: userId,
     title: CreateBlogCategoryRequest.title,
