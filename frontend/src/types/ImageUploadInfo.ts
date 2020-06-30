@@ -1,4 +1,4 @@
 export interface ImageUploadInfo {
-  groupId: string,
+  category: string,
   title: string
 }
