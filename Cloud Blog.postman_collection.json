@@ -9,7 +9,7 @@
 			"name": "Blog Actions",
 			"item": [
 				{
-					"name": "Get all blog posts",
+					"name": "Get all blog categories",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -20,7 +20,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{apiId}}.execute-api.{{regionId}}.amazonaws.com/dev/blogPosts",
+							"raw": "https://{{apiId}}.execute-api.{{regionId}}.amazonaws.com/dev/blogCategory",
 							"protocol": "https",
 							"host": [
 								"{{apiId}}",
@@ -31,14 +31,14 @@
 							],
 							"path": [
 								"dev",
-								"blogPosts"
+								"blogCategory"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Create blog post",
+					"name": "Create blog category",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -59,7 +59,7 @@
 							"raw": "{\n\t\"title\": \"New features\",\n\t\"content\": \"Amazon is releasing new features for cloud computing\"\n}"
 						},
 						"url": {
-							"raw": "https://{{apiId}}.execute-api.{{regionId}}.amazonaws.com/dev/blogPosts",
+							"raw": "https://{{apiId}}.execute-api.{{regionId}}.amazonaws.com/dev/blogCategory",
 							"protocol": "https",
 							"host": [
 								"{{apiId}}",
@@ -70,14 +70,14 @@
 							],
 							"path": [
 								"dev",
-								"blogPosts"
+								"blogCategory"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Add a image for a post",
+					"name": "Add a blog post for a category",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -98,7 +98,7 @@
 							"raw": "{\n\t\"title\": \"New Image\"}"
 						},
 						"url": {
-							"raw": "https://{{apiId}}.execute-api.{{regionId}}.amazonaws.com/dev/{{category}}",
+							"raw": "https://{{apiId}}.execute-api.{{regionId}}.amazonaws.com/dev/blogCategory/{{category}}/posts",
 							"protocol": "https",
 							"host": [
 								"{{apiId}}",
@@ -109,14 +109,16 @@
 							],
 							"path": [
 								"dev",
-								"{{category}}"
+								"blogCategory",
+								"{{category}}",
+								"posts"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Images for a category",
+					"name": "Get posts for a category",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -140,7 +142,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/{{category}}/images",
+							"raw": "https://{{apiId}}.execute-api.{{regionId}}.amazonaws.com/dev/blogCategory/{{category}}/posts",
 							"protocol": "https",
 							"host": [
 								"{{apiId}}",
@@ -151,15 +153,16 @@
 							],
 							"path": [
 								"dev",
+								"blogCategory",
 								"{{category}}",
-								"images"
+								"posts"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Get image by id",
+					"name": "Get a post from a category by id",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -183,7 +186,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/{{category}}/images",
+							"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/blogCategory/{{category}}/posts",
 							"protocol": "https",
 							"host": [
 								"{{apiId}}",
@@ -194,8 +197,9 @@
 							],
 							"path": [
 								"dev",
+								"blogCategory",
 								"{{category}}",
-								"images"
+								"posts"
 							]
 						}
 					},
