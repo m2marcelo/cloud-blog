@@ -114,35 +114,35 @@ functions:
   Auth:
     handler: src/lambda/auth/auth0Authorizer.handler
 
+  GetBlogCategories:
+    handler: src/lambda/http/getBlogCategories.handler
+    events:
+      - http:
+          method: get
+          path: blogCategory
+          cors: true
+
+  CreateBlogCategory:
+    handler: src/lambda/http/createBlogCategory.handler
+    events:
+      - http:
+          method: post
+          path: blogCategory
+          cors: true
+          authorizer: Auth
+          reqValidatorName: RequestBodyValidator
+          documentation:
+            summary: Create a new blog category
+            description: Create a new blog category
+            requestModels:
+              'application/json': BlogCategoryRequest
+  
   GetBlogPosts:
     handler: src/lambda/http/getBlogPosts.handler
     events:
       - http:
           method: get
-          path: blogPosts
-          cors: true
-
-  CreateBlogPost:
-    handler: src/lambda/http/createBlogPost.handler
-    events:
-      - http:
-          method: post
-          path: blogPosts
-          cors: true
-          authorizer: Auth
-          reqValidatorName: RequestBodyValidator
-          documentation:
-            summary: Create a new blog post
-            description: Create a new blog post
-            requestModels:
-              'application/json': BlogPostRequest
-  
-  GetImages:
-    handler: src/lambda/http/getImages.handler
-    events:
-      - http:
-          method: get
-          path: blogPosts/{category}/images
+          path: blogCategory/{category}/posts
           cors: true
     iamRoleStatements:
       - Effect: Allow
@@ -155,28 +155,28 @@ functions:
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.POSTS_TABLE}
       
 
-  GetImage:
-    handler: src/lambda/http/getImage.handler
+  GetBlogPost:
+    handler: src/lambda/http/getBlogPost.handler
     events:
       - http:
           method: get
-          path: images/{imageId}
+          path: posts/{postId}
           cors: true
 
-  CreateImage:
-    handler: src/lambda/http/createImage.handler
+  CreateBlogPost:
+    handler: src/lambda/http/createBlogPost.handler
     events:
       - http:
           method: post
-          path: blogPosts/{category}/images
+          path: blogCategory/{category}/posts
           cors: true
           authorizer: Auth
           reqValidatorName: RequestBodyValidator
           documentation:
-            summary: Create a new image for a post
-            description: Create a new image for a post
+            summary: Create a new post in a category
+            description: Create a new post in a category
             requestModels:
-              'application/json': ImageRequest
+              'application/json': BlogPostRequest
 
   ConnectHandler:
     handler: src/lambda/websocket/connect.handler
