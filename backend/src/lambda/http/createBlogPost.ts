@@ -1,13 +1,13 @@
 import { APIGatewayProxyHandler, APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import 'source-map-support/register'
 
-import { CreateBlogPostRequest } from '../../requests/CreateBlogPostRequest'
+import { CreateBlogCategoryRequest } from '../../requests/CreateBlogCategoryRequest'
 import { createPost } from '../../businessLogic/posts'
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   console.log('Processing event: ', event)
 
-  const newPost: CreateBlogPostRequest = JSON.parse(event.body)
+  const newPost: CreateBlogCategoryRequest = JSON.parse(event.body)
   const authorization = event.headers.Authorization
   const split = authorization.split(' ')
   const jwtToken = split[1]

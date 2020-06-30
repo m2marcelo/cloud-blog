@@ -1,4 +1,4 @@
-export interface BlogPost {
+export interface Categories {
   id: string
   title: string
   content: string

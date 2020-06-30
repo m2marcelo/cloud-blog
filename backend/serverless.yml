@@ -105,9 +105,9 @@ custom:
       - name: BlogPostRequest
         contentType: application/json
         schema: ${file(models/create-blog-post-request.json)}
-      - name: ImageRequest
+      - name: BlogCategoryRequest
         contentType: application/json
-        schema: ${file(models/create-image-request.json)}
+        schema: ${file(models/create-blog-category-request.json)}
 
 functions:
 

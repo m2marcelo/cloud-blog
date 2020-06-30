@@ -1,20 +1,20 @@
 import * as uuid from 'uuid'
 
-import { BlogPost } from '../models/Posts'
+import { Categories } from '../models/Categories'
 import { BlogAccess } from '../dataLayer/posts'
-import { CreateBlogPostRequest } from '../requests/CreateBlogPostRequest'
+import { CreateBlogPostRequest } from '../requests/CreateBlogCategoryRequest'
 import { getUserId } from '../auth/utils'
 
 const postsAccess = new BlogAccess()
 
-export async function getAllPosts(): Promise<BlogPost[]> {
+export async function getAllPosts(): Promise<Categories[]> {
   return postsAccess.getAllPosts()
 }
 
 export async function createPost(
   CreateBlogPostRequest: CreateBlogPostRequest,
   jwtToken: string
-): Promise<BlogPost> {
+): Promise<Categories> {
 
   const itemId = uuid.v4()
   const userId = getUserId(jwtToken)
