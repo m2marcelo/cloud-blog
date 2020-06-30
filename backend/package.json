@@ -19,6 +19,7 @@
     "serverless-iam-roles-per-function": "^2.0.2",
     "serverless-offline": "^6.4.0",
     "serverless-plugin-canary-deployments": "^0.4.8",
+    "serverless-plugin-tracing": "^2.0.0",
     "source-map-support": "^0.5.10",
     "wscat": "^4.0.0"
   },
