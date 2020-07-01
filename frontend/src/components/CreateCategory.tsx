@@ -56,9 +56,9 @@ export class CreateCategory extends React.PureComponent<
     }
   }
 
-  setUploadState(uploadingGroup: boolean) {
+  setUploadState(uploadingCategory: boolean) {
     this.setState({
-      uploadingCategory: true
+      uploadingCategory
     })
   }
 
