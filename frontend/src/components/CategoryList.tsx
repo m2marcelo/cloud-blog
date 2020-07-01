@@ -36,7 +36,7 @@ export class CategoryList extends React.PureComponent<CategoriesListProps, Categ
   render() {
     return (
       <div>
-        <h1>Groups</h1>
+        <h1>Cloud Blog</h1>
 
         <Button
           primary
