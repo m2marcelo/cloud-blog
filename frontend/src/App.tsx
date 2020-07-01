@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { GroupsList } from './components/GroupsList'
+import { CategoryList } from './components/CategoryList'
 import { Router, Link, Route, Switch } from 'react-router-dom'
 import { Grid, Menu, Segment } from 'semantic-ui-react'
-import { ImagesList } from './components/ImagesList'
+import { PostsList } from './components/PostsList'
 import { NotFound } from './components/NotFound'
-import { CreateImage } from './components/CreateImage'
-import { CreateGroup } from './components/CreateGroup'
+import { CreatePost } from './components/CreatePost'
+import { CreateCategory } from './components/CreateCategory'
 import Auth from './auth/Auth'
 
 export interface AppProps {}
@@ -88,21 +88,21 @@ export default class App extends Component<AppProps, AppState> {
           path="/groups/create"
           exact
           render={props => {
-            return <CreateGroup {...props} auth={this.props.auth} />
+            return <CreateCategory {...props} auth={this.props.auth} />
           }}
         />
 
-        <Route path="/images/:groupId" exact component={ImagesList} />
+        <Route path="/images/:groupId" exact component={PostsList} />
 
         <Route
           path="/images/:groupId/create"
           exact
           render={props => {
-            return <CreateImage {...props} auth={this.props.auth} />
+            return <CreatePost {...props} auth={this.props.auth} />
           }}
         />
 
-        <Route path="/" exact component={GroupsList} />
+        <Route path="/" exact component={CategoryList} />
 
         <Route component={NotFound} />
       </Switch>
