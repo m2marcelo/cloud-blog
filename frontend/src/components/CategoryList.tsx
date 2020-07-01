@@ -18,7 +18,7 @@ export class CategoryList extends React.PureComponent<CategoriesListProps, Categ
     categories: []
   }
 
-  handleCreateGroup = () => {
+  handleCreateCategory = () => {
     this.props.history.push(`/categories/create`)
   }
 
@@ -42,7 +42,7 @@ export class CategoryList extends React.PureComponent<CategoriesListProps, Categ
           primary
           size="huge"
           className="add-button"
-          onClick={this.handleCreateGroup}
+          onClick={this.handleCreateCategory}
         >
           Create new category
         </Button>
