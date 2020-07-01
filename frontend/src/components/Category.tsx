@@ -10,7 +10,7 @@ interface CategoryCardProps {
 interface CategoryCardState {
 }
 
-export class Group extends React.PureComponent<CategoryCardProps, CategoryCardState> {
+export class Category extends React.PureComponent<CategoryCardProps, CategoryCardState> {
 
   render() {
     return (
