@@ -22,6 +22,7 @@ PostImageCardState
           {this.props.image.imageUrl && (
             <Image src={this.props.image.imageUrl} />
           )}
+          <Card.Description>{this.props.image.description}</Card.Description>
         </Card.Content>
       </Card>
     )

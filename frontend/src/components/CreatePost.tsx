@@ -21,6 +21,7 @@ interface CreateBlogPostProps {
 interface CreateBlogPostState {
   title: string
   file: any
+  description: string
   uploadState: UploadState
 }
 
@@ -31,6 +32,7 @@ export class CreatePost extends React.PureComponent<
   state: CreateBlogPostState = {
     title: '',
     file: undefined,
+    description: '',
     uploadState: UploadState.NoUpload
   }
 
@@ -48,6 +50,10 @@ export class CreatePost extends React.PureComponent<
     })
   }
 
+  handleDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ description: event.target.value })
+  }
+
   handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault()
 
@@ -60,7 +66,8 @@ export class CreatePost extends React.PureComponent<
       this.setUploadState(UploadState.UploadingData)
       const uploadInfo = await createBlogPost(this.props.auth.getIdToken(), {
         category: this.props.match.params.category,
-        title: this.state.title
+        title: this.state.title,
+        description: this.state.description
       })
 
       console.log('Created post', uploadInfo)
@@ -103,6 +110,14 @@ export class CreatePost extends React.PureComponent<
               accept="image/*"
               placeholder="Image to upload"
               onChange={this.handleFileChange}
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>Description</label>
+            <input
+              placeholder="Write what happened"
+              value={this.state.description}
+              onChange={this.handleDescriptionChange}
             />
           </Form.Field>
 

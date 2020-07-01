@@ -9,13 +9,13 @@ interface PostsListProps {
   history: History
   match: {
     params: {
-      groupId: string
+      category: string
     }
   }
 }
 
 interface PostsListState {
-  images: BlogPostModel[]
+  posts: BlogPostModel[]
 }
 
 export class PostsList extends React.PureComponent<
@@ -23,18 +23,18 @@ PostsListProps,
 PostsListState
 > {
   state: PostsListState = {
-    images: []
+    posts: []
   }
 
   handleCreatePost = () => {
-    this.props.history.push(`/images/${this.props.match.params.groupId}/create`)
+    this.props.history.push(`/posts/${this.props.match.params.category}/create`)
   }
 
   async componentDidMount() {
     try {
-      const images = await getBlogPosts(this.props.match.params.groupId)
+      const posts = await getBlogPosts(this.props.match.params.category)
       this.setState({
-        images
+        posts
       })
     } catch (e) {
       alert(`Failed to fetch posts for a category : ${e.message}`)
@@ -42,6 +42,7 @@ PostsListState
   }
 
   render() {
+
     return (
       <div>
         <h1>Posts</h1>
@@ -58,8 +59,8 @@ PostsListState
         <Divider clearing />
 
         <Card.Group>
-          {this.state.images.map(image => {
-            return <PostImage key={image.imageId} image={image} />
+          {this.state.posts.map(posts => {
+            return <PostImage key={posts.imageId} image={posts} />
           })}
         </Card.Group>
       </div>

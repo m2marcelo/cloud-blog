@@ -92,10 +92,10 @@ export default class App extends Component<AppProps, AppState> {
           }}
         />
 
-        <Route path="/images/:groupId" exact component={PostsList} />
+        <Route path="/posts/:category" exact component={PostsList} />
 
         <Route
-          path="/images/:groupId/create"
+          path="/posts/:category/create"
           exact
           render={props => {
             return <CreatePost {...props} auth={this.props.auth} />

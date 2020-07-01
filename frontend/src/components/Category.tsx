@@ -17,7 +17,7 @@ export class Category extends React.PureComponent<CategoryCardProps, CategoryCar
       <Card>
         <Card.Content>
           <Card.Header>
-            <Link to={`/images/${this.props.category.id}`}>{this.props.category.title}</Link>
+            <Link to={`/posts/${this.props.category.id}`}>{this.props.category.title}</Link>
           </Card.Header>
           <Card.Description>{this.props.category.content}</Card.Description>
         </Card.Content>

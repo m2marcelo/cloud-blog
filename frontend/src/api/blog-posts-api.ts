@@ -25,7 +25,8 @@ export async function createBlogPost(
         'Authorization': `Bearer ${idToken}`
       },
       body: JSON.stringify({
-        title: newPost.title
+        title: newPost.title,
+        description: newPost.description
       })
     }
   )
