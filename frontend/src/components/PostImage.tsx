@@ -1,16 +1,16 @@
 import * as React from 'react'
 import { Card, Image } from 'semantic-ui-react'
-import { ImageModel } from '../types/ImageModel'
+import { BlogPostModel } from '../types/BlogPostModel'
 
-interface ImageCardProps {
-  image: ImageModel
+interface PostImageCardProps {
+  image: BlogPostModel
 }
 
-interface ImageCardState {}
+interface PostImageCardState {}
 
-export class UdagramImage extends React.PureComponent<
-  ImageCardProps,
-  ImageCardState
+export class PostImage extends React.PureComponent<
+PostImageCardProps,
+PostImageCardState
 > {
 
   render() {
