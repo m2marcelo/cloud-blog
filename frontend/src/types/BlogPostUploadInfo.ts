@@ -1,4 +1,5 @@
 export interface BlogPostUploadInfo {
   category: string,
-  title: string
+  title: string,
+  description: string
 }
