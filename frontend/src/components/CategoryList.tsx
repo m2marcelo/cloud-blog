@@ -5,6 +5,9 @@ import { getAllCategories } from '../api/blog-categories-api'
 import { Card, Button, Divider } from 'semantic-ui-react'
 import { History } from 'history'
 
+import Background from '../assets/clouds.jpg';
+
+
 interface CategoriesListProps {
   history: History
 }
@@ -12,6 +15,13 @@ interface CategoriesListProps {
 interface CategoriesListState {
   categories: BlogCategoriesModel[]
 }
+
+var sectionStyle = {
+  backgroundSize: '100%',
+  backgroundImage: `url(${Background})`,
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat'
+};
 
 export class CategoryList extends React.PureComponent<CategoriesListProps, CategoriesListState> {
   state: CategoriesListState = {
@@ -35,7 +45,7 @@ export class CategoryList extends React.PureComponent<CategoriesListProps, Categ
 
   render() {
     return (
-      <div>
+      <div style={ sectionStyle }>
         <h1>Cloud Blog</h1>
 
         <Button
@@ -47,6 +57,9 @@ export class CategoryList extends React.PureComponent<CategoriesListProps, Categ
           Create new category
         </Button>
 
+        <Divider clearing />
+
+        <h2>Existing blog categories</h2>
         <Divider clearing />
 
         <Card.Group>

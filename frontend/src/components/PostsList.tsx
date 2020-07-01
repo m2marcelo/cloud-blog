@@ -53,7 +53,7 @@ PostsListState
           className="add-button"
           onClick={this.handleCreatePost}
         >
-          Upload new image
+          Add a new Blog Post
         </Button>
 
         <Divider clearing />
