@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { ImageModel } from '../types/ImageModel'
-import { getImages } from '../api/images-api'
+import { BlogPostModel } from '../types/BlogPostModel'
+import { getBlogPosts } from '../api/blog-posts-api'
 import { Card, Divider, Button } from 'semantic-ui-react'
-import { UdagramImage } from './UdagramImage'
+import { PostImage } from './PostImage'
 import { History } from 'history'
 
-interface ImagesListProps {
+interface PostsListProps {
   history: History
   match: {
     params: {
@@ -14,43 +14,43 @@ interface ImagesListProps {
   }
 }
 
-interface ImagesListState {
-  images: ImageModel[]
+interface PostsListState {
+  images: BlogPostModel[]
 }
 
-export class ImagesList extends React.PureComponent<
-  ImagesListProps,
-  ImagesListState
+export class PostsList extends React.PureComponent<
+PostsListProps,
+PostsListState
 > {
-  state: ImagesListState = {
+  state: PostsListState = {
     images: []
   }
 
-  handleCreateImage = () => {
+  handleCreatePost = () => {
     this.props.history.push(`/images/${this.props.match.params.groupId}/create`)
   }
 
   async componentDidMount() {
     try {
-      const images = await getImages(this.props.match.params.groupId)
+      const images = await getBlogPosts(this.props.match.params.groupId)
       this.setState({
         images
       })
     } catch (e) {
-      alert(`Failed to fetch images for group : ${e.message}`)
+      alert(`Failed to fetch posts for a category : ${e.message}`)
     }
   }
 
   render() {
     return (
       <div>
-        <h1>Images</h1>
+        <h1>Posts</h1>
 
         <Button
           primary
           size="huge"
           className="add-button"
-          onClick={this.handleCreateImage}
+          onClick={this.handleCreatePost}
         >
           Upload new image
         </Button>
@@ -59,7 +59,7 @@ export class ImagesList extends React.PureComponent<
 
         <Card.Group>
           {this.state.images.map(image => {
-            return <UdagramImage key={image.imageId} image={image} />
+            return <PostImage key={image.imageId} image={image} />
           })}
         </Card.Group>
       </div>
