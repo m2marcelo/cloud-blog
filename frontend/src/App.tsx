@@ -85,7 +85,7 @@ export default class App extends Component<AppProps, AppState> {
     return (
       <Switch>
         <Route
-          path="/groups/create"
+          path="/categories/create"
           exact
           render={props => {
             return <CreateCategory {...props} auth={this.props.auth} />
