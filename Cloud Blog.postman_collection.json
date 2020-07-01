@@ -95,10 +95,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"title\": \"New Image\"}"
+							"raw": "{\n\t\"title\": \"New Post for my blog\",\n\t\"description\": \"the picture describes better than words\"\n}"
 						},
 						"url": {
-							"raw": "https://{{apiId}}.execute-api.{{regionId}}.amazonaws.com/dev/blogCategory/{{category}}/posts",
+							"raw": "https://{{apiId}}.execute-api.{{regionId}}.amazonaws.com/dev/blogCategory/{{categoryId}}/posts",
 							"protocol": "https",
 							"host": [
 								"{{apiId}}",
@@ -110,7 +110,7 @@
 							"path": [
 								"dev",
 								"blogCategory",
-								"{{category}}",
+								"{{categoryId}}",
 								"posts"
 							]
 						}
@@ -142,19 +142,19 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://{{apiId}}.execute-api.{{regionId}}.amazonaws.com/dev/blogCategory/{{category}}/posts",
+							"raw": "https://{{apiId}}.execute-api.{{regionId}}.amazonaws.com/dev/blogCategory/{{categoryId}}/posts",
 							"protocol": "https",
 							"host": [
 								"{{apiId}}",
 								"execute-api",
-								"us-east-1",
+								"{{regionId}}",
 								"amazonaws",
 								"com"
 							],
 							"path": [
 								"dev",
 								"blogCategory",
-								"{{category}}",
+								"{{categoryId}}",
 								"posts"
 							]
 						}
@@ -186,19 +186,19 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/blogCategory/{{category}}/posts",
+							"raw": "https://{{apiId}}.execute-api.{{regionId}}.amazonaws.com/dev/blogCategory/{{categoryId}}/posts",
 							"protocol": "https",
 							"host": [
 								"{{apiId}}",
 								"execute-api",
-								"us-east-1",
+								"{{regionId}}",
 								"amazonaws",
 								"com"
 							],
 							"path": [
 								"dev",
 								"blogCategory",
-								"{{category}}",
+								"{{categoryId}}",
 								"posts"
 							]
 						}
